@@ -6,7 +6,7 @@
   <title>Levated Enterprises: Pakistan's Premier B2B Procurement Partner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ── RESET ─────────────────────────────────────── */
@@ -35,7 +35,7 @@
       --shadow-sm:     0 2px 12px rgba(45,42,110,0.08);
       --shadow-md:     0 8px 32px rgba(45,42,110,0.12);
       --shadow-lg:     0 20px 60px rgba(45,42,110,0.16);
-      --font-display:  'Syne', sans-serif;
+      --font-display:  'Space Grotesk', sans-serif;
       --font-body:     'Inter', sans-serif;
       --font-mono:     'JetBrains Mono', monospace;
       --font-urdu:     'Noto Nastaliq Urdu', serif;
@@ -43,7 +43,11 @@
 
     body {
       font-family: var(--font-body);
-      background: var(--white);
+      background-color: var(--white);
+      background-image:
+        linear-gradient(rgba(45,42,110,0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45,42,110,0.10) 1px, transparent 1px);
+      background-size: 32px 32px;
       color: var(--text-dark);
       overflow-x: hidden;
     }
@@ -123,7 +127,7 @@
       padding: 110px 6% 80px;
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center; gap: 60px;
-      background: linear-gradient(135deg, var(--purple-pale) 0%, var(--white) 60%);
+      background: linear-gradient(135deg, rgba(240,239,254,0.85) 0%, rgba(255,255,255,0.75) 60%);
       position: relative; overflow: hidden;
     }
     .hero-bg-circle {
@@ -266,7 +270,7 @@
     /* Liquid logo canvas */
     .liquid-logo-wrap {
       position: relative; width: 100%; max-width: 520px;
-      aspect-ratio: 5 / 4; margin: 0 auto;
+      margin: 0 auto;
     }
     #liquid-logo-canvas {
       width: 100%; height: 100%; display: block;
@@ -361,7 +365,8 @@
     .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 60px; }
     .mission-visual {
       border-radius: 20px; overflow: hidden; position: relative;
-      background: var(--purple-pale); padding: 40px;
+      background: linear-gradient(145deg, #f8f7fe 0%, #fff4ef 100%);
+      padding: 40px;
       border: 1px solid var(--border);
       display: flex; flex-direction: column; gap: 16px;
     }
@@ -396,13 +401,14 @@
     @media (max-width: 900px) { .mission-grid { grid-template-columns: 1fr; gap: 40px; } }
 
     /* ── SERVICES ──────────────────────────────────── */
-    #services { background: var(--purple-pale); }
+    #services { background: rgba(240,239,254,0.6); }
     .services-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
       gap: 16px; margin-top: 52px;
     }
     .service-card {
-      background: white; border-radius: 16px; padding: 28px;
+      background: linear-gradient(145deg, #ffffff 0%, #f3f1fd 60%, #fff4ef 100%);
+      border-radius: 16px; padding: 28px;
       border: 1.5px solid var(--border);
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       position: relative; overflow: hidden; cursor: default;
@@ -495,13 +501,14 @@
     .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; align-items: start; }
     .why-cards { display: flex; flex-direction: column; gap: 14px; }
     .why-card {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(240,120,64,0.08) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 14px; padding: 24px 26px;
       display: flex; gap: 18px; align-items: flex-start;
       transition: background 0.2s, border-color 0.2s, transform 0.2s;
       cursor: default;
     }
-    .why-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(240,120,64,0.35); transform: translateX(4px); }
+    .why-card:hover { background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(240,120,64,0.14) 100%); border-color: rgba(240,120,64,0.4); transform: translateX(4px); }
     .why-card-icon {
       width: 46px; height: 46px; border-radius: 11px; flex-shrink: 0;
       background: rgba(240,120,64,0.15); border: 1px solid rgba(240,120,64,0.25);
@@ -548,7 +555,8 @@
     }
     .route-step-num {
       width: 72px; height: 72px; border-radius: 50%;
-      background: white; border: 3px solid var(--purple);
+      background: linear-gradient(145deg, #ffffff 0%, #f0effe 100%);
+      border: 3px solid var(--purple);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 24px; font-size: 1.6rem;
       box-shadow: var(--shadow-md);
@@ -1235,44 +1243,69 @@ void main(){
             ctx.drawImage(img, 0, 0, w, h);
             const px = ctx.getImageData(0, 0, w, h).data;
 
-            // shape mask: non-white pixels are "inside"
+            // shape mask: non-white/transparent pixels are "inside"
             const shape = new Uint8Array(w * h);
             for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
               const i = (y*w+x)*4;
               shape[y*w+x] = (px[i]>210 && px[i+1]>210 && px[i+2]>210) || px[i+3]<30 ? 0 : 1;
             }
 
-            const ins = (x,y) => x>=0&&x<w&&y>=0&&y<h&&shape[y*w+x]===1;
-            const bnd = new Uint8Array(w * h);
-            for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-              const idx = y*w+x; if (!shape[idx]) continue;
+            // Auto-crop: find tight bounding box of all shape pixels + 4% padding
+            let x0=w, y0=h, x1=0, y1=0;
+            for (let y=0;y<h;y++) for (let x=0;x<w;x++) {
+              if (!shape[y*w+x]) continue;
+              if (x<x0) x0=x; if (x>x1) x1=x;
+              if (y<y0) y0=y; if (y>y1) y1=y;
+            }
+            const pad = Math.round(Math.max(w,h)*0.04);
+            x0=Math.max(0,x0-pad); y0=Math.max(0,y0-pad);
+            x1=Math.min(w-1,x1+pad); y1=Math.min(h-1,y1+pad);
+            const cw=x1-x0+1, ch=y1-y0+1;
+
+            // Re-draw cropped region into a new canvas for clean pixel data
+            const cc = document.createElement('canvas');
+            cc.width=cw; cc.height=ch;
+            cc.getContext('2d').drawImage(sc, x0, y0, cw, ch, 0, 0, cw, ch);
+
+            // Rebuild shape mask on the cropped region
+            const cpx = cc.getContext('2d').getImageData(0,0,cw,ch).data;
+            const cs = new Uint8Array(cw*ch);
+            for (let y=0;y<ch;y++) for (let x=0;x<cw;x++) {
+              const i=(y*cw+x)*4;
+              cs[y*cw+x] = (cpx[i]>210&&cpx[i+1]>210&&cpx[i+2]>210)||cpx[i+3]<30 ? 0 : 1;
+            }
+
+            const ins = (x,y) => x>=0&&x<cw&&y>=0&&y<ch&&cs[y*cw+x]===1;
+            const bnd = new Uint8Array(cw*ch);
+            for (let y=0;y<ch;y++) for (let x=0;x<cw;x++) {
+              const idx=y*cw+x; if (!cs[idx]) continue;
               outer: for (let ny=y-1;ny<=y+1;ny++) for (let nx=x-1;nx<=x+1;nx++)
                 if (!ins(nx,ny)) { bnd[idx]=1; break outer; }
             }
 
-            let u = new Float32Array(w*h), nu = new Float32Array(w*h);
+            let u = new Float32Array(cw*ch), nu = new Float32Array(cw*ch);
             const C=0.01, TOTAL=300, BATCH=15;
-            const getU = (x,y) => (x<0||x>=w||y<0||y>=h||!shape[y*w+x]) ? 0 : u[y*w+x];
+            const getU = (x,y) => (x<0||x>=cw||y<0||y>=ch||!cs[y*cw+x]) ? 0 : u[y*cw+x];
 
             function step(done) {
               if (done >= TOTAL) {
                 let mx=0; for (let i=0;i<u.length;i++) if(u[i]>mx) mx=u[i];
-                const out = new Uint8ClampedArray(w*h*4);
-                for (let y=0;y<h;y++) for (let x=0;x<w;x++) {
-                  const idx=y*w+x, p=idx*4;
-                  if (!shape[idx]) { out[p]=out[p+1]=out[p+2]=out[p+3]=255; }
+                const out = new Uint8ClampedArray(cw*ch*4);
+                for (let y=0;y<ch;y++) for (let x=0;x<cw;x++) {
+                  const idx=y*cw+x, p=idx*4;
+                  if (!cs[idx]) { out[p]=out[p+1]=out[p+2]=out[p+3]=255; }
                   else {
                     const g = Math.round(255*(1-Math.pow(mx>0?u[idx]/mx:0, 2)));
                     out[p]=out[p+1]=out[p+2]=g; out[p+3]=255;
                   }
                 }
-                resolve(new ImageData(out, w, h));
+                resolve(new ImageData(out, cw, ch));
                 return;
               }
               for (let b=0;b<BATCH;b++) {
-                for (let y=0;y<h;y++) for (let x=0;x<w;x++) {
-                  const idx=y*w+x;
-                  nu[idx] = (!shape[idx]||bnd[idx]) ? 0 : (C+getU(x+1,y)+getU(x-1,y)+getU(x,y+1)+getU(x,y-1))/4;
+                for (let y=0;y<ch;y++) for (let x=0;x<cw;x++) {
+                  const idx=y*cw+x;
+                  nu[idx] = (!cs[idx]||bnd[idx]) ? 0 : (C+getU(x+1,y)+getU(x-1,y)+getU(x,y+1)+getU(x,y-1))/4;
                 }
                 [u,nu]=[nu,u];
               }
@@ -1315,12 +1348,16 @@ void main(){
         const n = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
         for (let i=0;i<n;i++) { const nm=gl.getActiveUniform(prog,i).name; uni[nm]=gl.getUniformLocation(prog,nm); }
 
-        // Canvas size: match image aspect ratio so logo fills the canvas
+        // Canvas size: match cropped image ratio so logo fills the canvas exactly
         const imgRatio = imageData.width / imageData.height;
         const baseSize = Math.round(1000 * devicePixelRatio);
         canvas.width  = baseSize;
         canvas.height = Math.round(baseSize / imgRatio);
         gl.viewport(0, 0, canvas.width, canvas.height);
+
+        // Sync container aspect-ratio to the cropped image so CSS layout matches
+        const wrap = canvas.closest('.liquid-logo-wrap');
+        if (wrap) wrap.style.aspectRatio = `${imageData.width} / ${imageData.height}`;
 
         // Uniforms
         gl.uniform1f(uni.u_ratio, imgRatio);
