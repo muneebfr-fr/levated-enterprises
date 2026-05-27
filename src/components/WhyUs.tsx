@@ -1,11 +1,12 @@
+import { Timer, ClipboardList, Package, Receipt } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import { LOGO, WA_BULK } from '../constants';
 
 const CARDS = [
-  { icon: '⏱️', title: 'Reliability', desc: 'We guarantee fulfillment on time and to your exact specifications, minimizing your operational risk across every order we handle in Pakistan.' },
-  { icon: '📋', title: 'Full Transparency', desc: 'No hidden costs. Clear pricing, proper invoicing, and full visibility into our sourcing and quality standards, every single time.' },
-  { icon: '📦', title: 'Bulk Capacity', desc: 'Whether it\'s 100 units or 10,000, we have a proven track record of handling complex, large-scale purchase orders with ease.' },
-  { icon: '🧾', title: 'Tax Compliance', desc: 'NTN registered, STRN verified, GST compliant. Your invoicing and documentation is as solid as the supplies we deliver.' },
+  { Icon: Timer,         title: 'Reliability',       desc: 'We guarantee fulfillment on time and to your exact specifications, minimizing your operational risk across every order we handle in Pakistan.' },
+  { Icon: ClipboardList, title: 'Full Transparency',  desc: 'No hidden costs. Clear pricing, proper invoicing, and full visibility into our sourcing and quality standards, every single time.' },
+  { Icon: Package,       title: 'Bulk Capacity',      desc: "Whether it's 100 units or 10,000, we have a proven track record of handling complex, large-scale purchase orders with ease." },
+  { Icon: Receipt,       title: 'Tax Compliance',     desc: 'NTN registered, STRN verified, GST compliant. Your invoicing and documentation is as solid as the supplies we deliver.' },
 ];
 
 export default function WhyUs() {
@@ -25,7 +26,9 @@ export default function WhyUs() {
           <div className="why-cards">
             {CARDS.map((card, i) => (
               <div key={card.title} className={`why-card reveal reveal-delay-${i + 1}`}>
-                <div className="why-card-icon">{card.icon}</div>
+                <div className="why-card-icon">
+                  <card.Icon size={20} />
+                </div>
                 <div>
                   <h4>{card.title}</h4>
                   <p>{card.desc}</p>

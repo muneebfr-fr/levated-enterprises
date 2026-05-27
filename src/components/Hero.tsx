@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import AnimatedTextCycle from './AnimatedTextCycle';
 import LiquidLogo from './LiquidLogo';
+import BorderBeam from './ui/BorderBeam';
 import { WA_QUOTE } from '../constants';
 
 const CYCLE_WORDS = ['Reliable', 'Verified', 'Trusted', 'Nationwide'];
@@ -79,7 +80,9 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* BorderBeam sweeps around the liquid logo card */}
       <div className="hero-right">
+        <BorderBeam duration={5} />
         <LiquidLogo />
       </div>
     </section>
