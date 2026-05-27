@@ -81,7 +81,13 @@ nav.scrolled {
 }
 
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
-.nav-logo img { height: 42px; width: auto; object-fit: contain; }
+.nav-logo img {
+  height: 64px; width: auto; object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(45,42,110,0.13);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-logo img:hover { transform: scale(1.03); box-shadow: 0 4px 18px rgba(45,42,110,0.2); }
 
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
@@ -108,7 +114,7 @@ nav.scrolled {
 .nav-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
 .nav-wa svg { width: 16px; height: 16px; }
 
-@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { height: 34px; } }
+@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { height: 48px; } }
 
 /* ── HERO ──────────────────────────────────────── */
 #home {
