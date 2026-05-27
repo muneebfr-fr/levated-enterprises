@@ -379,13 +379,20 @@ section { padding: 88px 6%; }
 .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 60px; }
 .mission-visual {
   border-radius: 20px; overflow: hidden; position: relative;
-  background: linear-gradient(145deg, #f8f7fe 0%, #fff4ef 100%);
+  background: linear-gradient(135deg, #f8f7fe 0%, #fff4ef 30%, #f0effe 60%, #fff8f5 85%, #f8f7fe 100%);
+  background-size: 300% 300%;
+  animation: mission-gradient 8s ease infinite;
   padding: 40px;
   border: 1px solid var(--border);
   display: flex; flex-direction: column; gap: 16px;
 }
+@keyframes mission-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .mission-logo-display { text-align: center; padding: 20px 0; }
-.mission-logo-display img { width: 280px; max-width: 100%; margin: 0 auto; }
+.mission-logo-display img { width: 360px; max-width: 100%; margin: 0 auto; }
 .mission-tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .m-tag {
   font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.1em;
