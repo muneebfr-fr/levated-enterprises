@@ -53,7 +53,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 <span className="org">Levated Enterprises</span>. All rights reserved. Karachi, Pakistan.</p>
+        <p>© 2026 <span className="org">Levated Enterprises</span>. All rights reserved. Karachi, Pakistan.</p>
         <p>آپ کا قابلِ اعتماد سپلائی پارٹنر</p>
       </div>
     </footer>
