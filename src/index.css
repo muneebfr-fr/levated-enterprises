@@ -82,12 +82,10 @@ nav.scrolled {
 
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
 .nav-logo img {
-  height: 64px; width: auto; object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(45,42,110,0.13);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: auto; width: 200px; object-fit: contain;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.nav-logo img:hover { transform: scale(1.03); box-shadow: 0 4px 18px rgba(45,42,110,0.2); }
+.nav-logo img:hover { transform: scale(1.02); opacity: 0.88; }
 
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
@@ -114,7 +112,7 @@ nav.scrolled {
 .nav-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
 .nav-wa svg { width: 16px; height: 16px; }
 
-@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { height: 48px; } }
+@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { width: 150px; } }
 
 /* ── HERO ──────────────────────────────────────── */
 #home {
@@ -344,7 +342,7 @@ section { padding: 88px 6%; }
   display: flex; flex-direction: column; gap: 16px;
 }
 .mission-logo-display { text-align: center; padding: 20px 0; }
-.mission-logo-display img { max-width: 260px; margin: 0 auto; }
+.mission-logo-display img { width: 280px; max-width: 100%; margin: 0 auto; }
 .mission-tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .m-tag {
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
@@ -496,7 +494,7 @@ section { padding: 88px 6%; }
   display: flex; flex-direction: column; gap: 24px;
 }
 .why-logo-section { text-align: center; padding: 16px 0; }
-.why-logo-section img { max-width: 200px; margin: 0 auto; }
+.why-logo-section img { width: 240px; max-width: 100%; margin: 0 auto; filter: brightness(0) invert(1); opacity: 0.85; }
 .why-quote {
   background: rgba(240,120,64,0.12); border: 1px solid rgba(240,120,64,0.25);
   border-radius: 12px; padding: 20px 22px;
@@ -552,7 +550,7 @@ section { padding: 88px 6%; }
   background-size: 28px 28px;
 }
 .cta-wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
-.cta-logo { margin: 0 auto 32px; max-width: 220px; }
+.cta-logo { margin: 0 auto 32px; width: 280px; max-width: 80%; filter: brightness(0) invert(1); opacity: 0.9; }
 .cta-h2 {
   font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 800; letter-spacing: -0.03em; line-height: 1.06;
@@ -586,7 +584,7 @@ footer {
 }
 .footer-grid { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 52px; }
 .footer-brand-logo { margin-bottom: 16px; }
-.footer-brand-logo img { height: 44px; width: auto; }
+.footer-brand-logo img { width: 200px; height: auto; filter: brightness(0) invert(1); opacity: 0.9; }
 .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 20px; max-width: 280px; }
 .footer-wa {
   display: inline-flex; align-items: center; gap: 8px;
