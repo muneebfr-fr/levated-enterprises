@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ScrollProgress from './components/ScrollProgress';
 import WaFloat from './components/WaFloat';
 import Navbar from './components/Navbar';
@@ -12,6 +13,22 @@ import Cta from './components/Cta';
 import Footer from './components/Footer';
 
 export default function App() {
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <>
       <ScrollProgress />
