@@ -379,7 +379,7 @@ section { padding: 88px 6%; }
 .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 60px; }
 .mission-visual {
   border-radius: 20px; overflow: hidden; position: relative;
-  background: linear-gradient(135deg, #f8f7fe 0%, #fff4ef 30%, #f0effe 60%, #fff8f5 85%, #f8f7fe 100%);
+  background: linear-gradient(135deg, #ddd7ff 0%, #ffdcc8 30%, #e8e4ff 60%, #ffe5d0 85%, #d8d3ff 100%);
   background-size: 300% 300%;
   animation: mission-gradient 5s ease infinite;
   padding: 40px;
