@@ -11,7 +11,7 @@ import { WA_CITY } from '../constants';
  * y = (37.1 - lat)  / 13.5 * 959
  */
 const MAP_CITIES = [
-  { name: 'Karachi',    x: 374, y: 868, hq: true,  delay: 0.0, lx: 382,  ly: 860,  anchor: 'start' as const },
+  { name: 'Karachi',    x: 410, y: 868, hq: true,  delay: 0.0, lx: 418,  ly: 860,  anchor: 'start' as const },
   { name: 'Lahore',     x: 822, y: 398, hq: false, delay: 0.4, lx: 813,  ly: 390,  anchor: 'end'   as const },
   { name: 'Islamabad',  x: 747, y: 240, hq: false, delay: 0.8, lx: 738,  ly: 232,  anchor: 'end'   as const },
   { name: 'Faisalabad', x: 749, y: 404, hq: false, delay: 1.2, lx: 740,  ly: 418,  anchor: 'end'   as const },
@@ -85,7 +85,7 @@ export default function Cities() {
                   {city.lx !== null && (
                     <text
                       x={city.lx} y={city.ly!}
-                      fontSize={city.hq ? 13 : 11}
+                      fontSize={city.hq ? 26 : 22}
                       fontFamily="var(--font-display)"
                       fontWeight="700"
                       fill={city.hq ? 'var(--orange-dark)' : 'var(--purple-dark)'}
