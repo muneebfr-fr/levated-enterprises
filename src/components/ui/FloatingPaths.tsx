@@ -15,9 +15,15 @@ export default function FloatingPaths({ position }: { position: number }) {
   }));
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      pointerEvents: 'none',
+      overflow: 'hidden',
+      zIndex: 0,
+    }}>
       <svg
-        className="w-full h-full"
+        style={{ width: '100%', height: '100%' }}
         viewBox="0 0 696 316"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
