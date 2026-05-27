@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { LOGO } from '../constants';
 
+// JPG used for shader — white background helps Poisson solve treat logo as one connected region
+// PNG used for the loader placeholder only
+const SHADER_SRC = '/logo.jpg';
+
 const VERT = `#version 300 es
 precision mediump float;
 in vec2 a_position;
@@ -186,7 +190,7 @@ export default function LiquidLogo() {
     let animId: number;
     let cancelled = false;
 
-    parseLogo(LOGO).then((imageData) => {
+    parseLogo(SHADER_SRC).then((imageData) => {
       if (cancelled) return;
 
       const gl = canvas.getContext('webgl2', { antialias: true, alpha: true });
