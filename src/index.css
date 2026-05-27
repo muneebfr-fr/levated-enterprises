@@ -385,7 +385,7 @@ section { padding: 88px 6%; }
 .mission-logo-display img { width: 280px; max-width: 100%; margin: 0 auto; }
 .mission-tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .m-tag {
-  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 6px 12px; border-radius: 6px;
   border: 1px solid var(--border-strong); color: var(--purple); background: white;
 }
