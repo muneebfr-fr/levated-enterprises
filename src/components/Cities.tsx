@@ -100,7 +100,7 @@ export default function Cities() {
               {/* Subtle watermark */}
               <text
                 x="130" y="600" fontSize="11"
-                fontFamily="var(--font-mono)"
+                fontFamily="var(--font-display)"
                 fill="rgba(45,42,110,0.18)"
                 letterSpacing="8"
                 transform="rotate(-72,130,600)"
