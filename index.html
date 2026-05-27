@@ -305,9 +305,20 @@
     .liquid-loader.hidden { opacity: 0; pointer-events: none; }
 
     @media (max-width: 900px) {
-      #home { grid-template-columns: 1fr; padding: 100px 5% 60px; }
-      .hero-right { display: none; }
+      #home { grid-template-columns: 1fr; padding: 100px 5% 60px; gap: 40px; }
+      .hero-right {
+        display: flex;
+        min-height: unset;
+        padding: 32px 24px;
+        border-radius: 18px;
+      }
+      .liquid-logo-wrap { max-width: 380px; }
+      .hero-stat-card { display: none; }
       .hero-h1 { font-size: clamp(2rem, 7vw, 3rem); }
+    }
+    @media (max-width: 480px) {
+      .hero-right { padding: 24px 16px; border-radius: 14px; }
+      .liquid-logo-wrap { max-width: 100%; }
     }
 
 
