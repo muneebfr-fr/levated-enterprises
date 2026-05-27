@@ -82,7 +82,7 @@ nav.scrolled {
 
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
 .nav-logo img {
-  height: auto; width: 200px; object-fit: contain;
+  height: 44px; width: auto; max-width: 200px; object-fit: contain;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .nav-logo img:hover { transform: scale(1.02); opacity: 0.88; }
@@ -112,12 +112,12 @@ nav.scrolled {
 .nav-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
 .nav-wa svg { width: 16px; height: 16px; }
 
-@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { width: 150px; } }
+@media (max-width: 768px) { .nav-links { display: none; } .nav-logo img { height: 36px; max-width: 150px; } }
 
 /* ── HERO ──────────────────────────────────────── */
 #home {
   min-height: 100vh;
-  padding: 110px 6% 80px;
+  padding: 130px 6% 80px;
   display: grid; grid-template-columns: 1fr 1fr;
   align-items: center; gap: 60px;
   background: linear-gradient(135deg, rgba(240,239,254,0.85) 0%, rgba(255,255,255,0.75) 60%);
@@ -267,7 +267,7 @@ nav.scrolled {
 .liquid-loader.hidden { opacity: 0; pointer-events: none; }
 
 @media (max-width: 900px) {
-  #home { grid-template-columns: 1fr; padding: 100px 5% 60px; gap: 40px; }
+  #home { grid-template-columns: 1fr; padding: 110px 5% 60px; gap: 40px; }
   .hero-right {
     display: flex;
     min-height: unset;
