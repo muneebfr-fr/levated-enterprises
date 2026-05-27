@@ -17,15 +17,18 @@ export default function AnimatedTextCycle({
   const [width, setWidth] = useState("auto");
   const measureRef = useRef<HTMLDivElement>(null);
 
+  // Measure once on mount — find the widest word and lock to that width forever.
+  // Never re-measure on index change: that causes h1 reflow and scroll jitter.
   useEffect(() => {
     if (measureRef.current) {
       const elements = measureRef.current.children;
-      if (elements.length > currentIndex) {
-        const newWidth = elements[currentIndex].getBoundingClientRect().width;
-        setWidth(`${newWidth}px`);
+      let maxWidth = 0;
+      for (let i = 0; i < elements.length; i++) {
+        maxWidth = Math.max(maxWidth, elements[i].getBoundingClientRect().width);
       }
+      if (maxWidth > 0) setWidth(`${maxWidth}px`);
     }
-  }, [currentIndex]);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -76,18 +79,10 @@ export default function AnimatedTextCycle({
         ))}
       </div>
 
-      {/* Visible animated word */}
+      {/* Visible animated word — width is static (set once on mount) so no layout shift */}
       <motion.span
         className="relative inline-block"
-        animate={{
-          width,
-          transition: {
-            type: "spring",
-            stiffness: 150,
-            damping: 15,
-            mass: 1.2,
-          },
-        }}
+        style={{ width }}
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
