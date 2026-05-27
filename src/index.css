@@ -368,11 +368,6 @@ section { padding: 88px 6%; }
 
 /* ── MISSION / ABOUT ───────────────────────────── */
 #mission { background: var(--white); position: relative; overflow: hidden; }
-#mission::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(45,42,110,0.12) 1px, transparent 1px);
-  background-size: 28px 28px; pointer-events: none; z-index: 0;
-}
 .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 60px; }
 .mission-visual {
   border-radius: 20px; overflow: hidden; position: relative;

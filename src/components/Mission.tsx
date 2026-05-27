@@ -2,6 +2,7 @@ import { Factory, Monitor, FileText, Sparkles } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import { LOGO } from '../constants';
 import NumberTicker from './ui/NumberTicker';
+import FloatingPaths from './ui/FloatingPaths';
 
 const FEATURES = [
   { Icon: Factory,  title: 'Industrial & MRO Supplies',   desc: 'Keep your facility running with high-grade PPE, workshop tools and machinery consumables.' },
@@ -17,6 +18,8 @@ export default function Mission() {
 
   return (
     <section id="mission">
+      <FloatingPaths position={1} />
+      <FloatingPaths position={-1} />
       <div className="section-wrap">
         <div className="reveal" ref={r0}>
           <div className="eyebrow">Who We Are</div>
