@@ -1,5 +1,5 @@
 import { useReveal } from '../hooks/useReveal';
-import { LOGO, WA_QUOTE } from '../constants';
+import { LOGO, WA_QUOTE, PHONE, PHONE_TEL } from '../constants';
 
 export default function Cta() {
   const r0 = useReveal();
@@ -30,6 +30,9 @@ export default function Cta() {
             Email Us
           </a>
         </div>
+        <a href={PHONE_TEL} className="cta-phone">
+          or call us · <span>{PHONE}</span>
+        </a>
       </div>
     </section>
   );

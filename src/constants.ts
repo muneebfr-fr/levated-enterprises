@@ -3,3 +3,5 @@ export const WA_BULK  = "https://wa.me/923333122898?text=Hello%20Levated%20Enter
 export const WA_CITY  = "https://wa.me/923333122898?text=Hello%2C%20I%20need%20delivery%20to%20a%20specific%20city%20in%20Pakistan.";
 export const WA_BASE  = "https://wa.me/923333122898";
 export const LOGO     = "/logo.png";
+export const PHONE    = "+92 333 3122898";
+export const PHONE_TEL = "tel:+923333122898";

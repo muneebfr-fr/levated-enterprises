@@ -1,4 +1,4 @@
-import { LOGO, WA_BASE } from '../constants';
+import { LOGO, WA_BASE, PHONE, PHONE_TEL } from '../constants';
 
 export default function Footer() {
   return (
@@ -42,6 +42,7 @@ export default function Footer() {
 
         <div className="footer-col">
           <h4>Contact</h4>
+          <a href={PHONE_TEL}>{PHONE}</a>
           <a href={WA_BASE} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a href="mailto:info@levatedenterprises.com">Email Us</a>
           <a href="#cta">Request a Quote</a>
