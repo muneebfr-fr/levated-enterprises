@@ -50,19 +50,69 @@ body {
 }
 
 /* ── WHATSAPP FLOAT ────────────────────────────── */
+/* ── WA WIDGET ─────────────────────────────────── */
+.wa-widget { position: fixed; bottom: 28px; right: 28px; z-index: 150; }
 .wa-float {
-  position: fixed; bottom: 28px; right: 28px; z-index: 150;
   width: 58px; height: 58px; border-radius: 50%;
   background: #25D366;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 30px rgba(37,211,102,0.40);
-  text-decoration: none; color: white;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: white; border: none; cursor: pointer;
   animation: wa-pulse 2.5s ease-in-out infinite;
 }
-.wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.5); animation: none; }
-.wa-float svg { width: 28px; height: 28px; }
+.wa-float.active { animation: none; background: #1da851; }
 @keyframes wa-pulse { 0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.25)} 50%{box-shadow:0 8px 30px rgba(37,211,102,0.4),0 0 0 12px rgba(37,211,102,0)} }
+
+.wa-widget-panel {
+  position: absolute; bottom: 70px; right: 0;
+  width: 290px; background: white;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.08);
+  transform-origin: bottom right;
+}
+.wa-widget-header { background: #25D366; padding: 14px 16px; }
+.wa-widget-header-top { display: flex; align-items: center; gap: 10px; }
+.wa-widget-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: white;
+}
+.wa-widget-name { font-family: var(--font-display); font-weight: 700; font-size: 0.88rem; color: white; }
+.wa-widget-status { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
+.wa-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #a8f0c6; display: inline-block; }
+.wa-widget-close { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.75); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; transition: color 0.15s; }
+.wa-widget-close:hover { color: white; }
+
+.wa-widget-body { padding: 14px; background: #f0f2f5; }
+.wa-widget-bubble {
+  background: white; border-radius: 0 12px 12px 12px;
+  padding: 10px 14px; font-size: 0.85rem; color: var(--text-dark);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 12px;
+  font-family: var(--font-body); line-height: 1.5;
+}
+.wa-chips { display: flex; flex-direction: column; gap: 7px; }
+.wa-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 13px; border-radius: 10px;
+  background: white; border: 1.5px solid var(--border);
+  color: var(--purple-dark); font-size: 0.8rem; font-weight: 600;
+  font-family: var(--font-display); text-decoration: none;
+  transition: background 0.18s, border-color 0.18s, transform 0.18s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.wa-chip:hover { background: var(--purple-pale); border-color: var(--purple); transform: translateX(3px); }
+.wa-chip-icon { font-size: 1rem; flex-shrink: 0; }
+
+.wa-widget-footer { padding: 10px 14px; border-top: 1px solid var(--border); }
+.wa-widget-open {
+  display: block; text-align: center;
+  background: #25D366; color: white;
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+  padding: 9px; border-radius: 9px; text-decoration: none;
+  transition: background 0.18s;
+}
+.wa-widget-open:hover { background: #1da851; }
 
 /* ── NAVBAR ────────────────────────────────────── */
 nav {
@@ -628,10 +678,10 @@ section { padding: 88px 6%; }
 .route-header .eyebrow { justify-content: center; }
 .route-header .section-h2 { text-align: center; }
 .route-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; position: relative; }
-.route-steps::before {
-  content: ''; position: absolute; top: 36px; left: calc(100%/6); right: calc(100%/6);
-  height: 2px; background: linear-gradient(to right, var(--purple), var(--orange));
-  z-index: 0;
+.route-connector {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 72px;
+  pointer-events: none; z-index: 0; overflow: visible;
 }
 .route-step {
   text-align: center; padding: 0 28px; position: relative; z-index: 1;
