@@ -5,18 +5,18 @@ import { useReveal } from '../hooks/useReveal';
 import WaButton from './WaButton';
 
 /**
- * City positions calculated from real lat/lon.
- * Projected onto viewBox "0 0 1000 959" (pk.svg coordinate space).
- * Scale: lon 60.9–77.2 (16.3°) → 1000px | lat 23.6–37.1 (13.5°) → 959px
- * x = (lon - 60.9) / 16.3 * 1000
- * y = (37.1 - lat)  / 13.5 * 959
+ * City positions derived from real lat/lon projected onto pk.svg coordinate space.
+ * SVG path extents (traced): x 45.5-954.5, y 43.6-915.7
+ * Geographic bounds: lon 60.87-77.83 E, lat 23.69-37.10 N
+ * x = 45.5 + (lon - 60.87) / 16.96 * 909
+ * y = 43.6 + (37.10 - lat) / 13.41 * 872.1
  */
 const MAP_CITIES = [
-  { name: 'Karachi',    x: 410, y: 868, hq: true,  delay: 0.0, lx: 418,  ly: 860,  anchor: 'start' as const },
-  { name: 'Lahore',     x: 822, y: 398, hq: false, delay: 0.4, lx: 813,  ly: 390,  anchor: 'end'   as const },
-  { name: 'Islamabad',  x: 747, y: 240, hq: false, delay: 0.8, lx: 738,  ly: 232,  anchor: 'end'   as const },
-  { name: 'Faisalabad', x: 749, y: 404, hq: false, delay: 1.2, lx: 740,  ly: 418,  anchor: 'end'   as const },
-  { name: 'Rawalpindi', x: 747, y: 249, hq: false, delay: 1.6, lx: null, ly: null, anchor: 'end'   as const },
+  { name: 'Karachi',    x: 375, y: 840, hq: true,  delay: 0.0, lx: 385,  ly: 832,  anchor: 'start' as const },
+  { name: 'Lahore',     x: 768, y: 405, hq: false, delay: 0.4, lx: 758,  ly: 397,  anchor: 'end'   as const },
+  { name: 'Islamabad',  x: 701, y: 263, hq: false, delay: 0.8, lx: 691,  ly: 255,  anchor: 'end'   as const },
+  { name: 'Faisalabad', x: 700, y: 413, hq: false, delay: 1.2, lx: 690,  ly: 427,  anchor: 'end'   as const },
+  { name: 'Rawalpindi', x: 697, y: 273, hq: false, delay: 1.6, lx: null, ly: null, anchor: 'end'   as const },
 ];
 
 /** Sidebar city list */
