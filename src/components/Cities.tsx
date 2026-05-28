@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Globe, MapPin } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal';
-import { WA_CITY } from '../constants';
+import WaButton from './WaButton';
 
 /**
  * City positions calculated from real lat/lon.
@@ -165,10 +165,10 @@ export default function Cities() {
 
         <motion.div className="nationwide-bar reveal" style={{ y: barY }}>
           <p>Don't see your city? <strong>No problem.</strong> We deliver to any location across Pakistan. Just WhatsApp us your requirements and delivery address.</p>
-          <a href={WA_CITY} target="_blank" rel="noopener noreferrer" className="nationwide-badge">
+          <WaButton className="nationwide-badge">
             <MapPin size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} />
             Enquire for Your City
-          </a>
+          </WaButton>
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WA_BASE, WA_CHIPS } from '../constants';
@@ -11,6 +11,12 @@ const WaSvg = () => (
 
 export default function WaFloat() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener('open-wa-widget', handler);
+    return () => window.removeEventListener('open-wa-widget', handler);
+  }, []);
 
   return (
     <div className="wa-widget">
