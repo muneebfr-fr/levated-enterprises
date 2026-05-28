@@ -55,7 +55,7 @@ void main(){
   float diag=uv.x-uv.y,t=.001*u_time;
   vec2 imgUv=getImgUv();
   vec4 img=texture(u_image_texture,imgUv);
-  vec3 c1=vec3(.98,.98,1.),c2=vec3(.1,.1,.1+.1*smoothstep(.7,1.3,uv.x+uv.y));
+  vec3 c1=vec3(.941,.471,.251),c2=vec3(.176,.165,.431+.05*smoothstep(.7,1.3,uv.x+uv.y));
   float edge=img.r;
   vec2 gu=uv-.5;
   float dist=length(gu+vec2(0.,.2*diag));
