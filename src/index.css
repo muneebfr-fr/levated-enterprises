@@ -533,7 +533,7 @@ section { padding: 88px 6%; }
 #cities { background: var(--white); position: relative; }
 #cities::before {
   content: ''; position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(45,42,110,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(45,42,110,0.28) 1px, transparent 1px);
   background-size: 28px 28px; pointer-events: none; z-index: 0;
 }
 .cities-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
