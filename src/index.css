@@ -469,7 +469,7 @@ section { padding: 88px 6%; }
 @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } .service-card.featured { grid-column: span 1; grid-row: span 1; } }
 
 /* ── CITIES ────────────────────────────────────── */
-#cities { background: var(--white); position: relative; overflow: hidden; }
+#cities { background: var(--white); position: relative; }
 #cities::before {
   content: ''; position: absolute; inset: 0;
   background-image: radial-gradient(rgba(45,42,110,0.12) 1px, transparent 1px);
