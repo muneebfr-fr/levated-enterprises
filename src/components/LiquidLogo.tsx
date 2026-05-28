@@ -87,7 +87,7 @@ void main(){
                 colorCh(c1.b,c2.b,sb,w,.01,bulge));
   col*=opacity;fragColor=vec4(col,opacity);}`;
 
-const PARAMS = { patternScale: 1.8, refraction: 0.025, edge: 0.35, patternBlur: 0.004, liquid: 0.12, speed: 0.4 };
+const PARAMS = { patternScale: 1.8, refraction: 0.025, edge: 0.18, patternBlur: 0.004, liquid: 0.12, speed: 0.4 };
 
 function parseLogo(src: string): Promise<ImageData> {
   return new Promise((resolve, reject) => {

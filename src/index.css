@@ -233,7 +233,7 @@ nav.scrolled {
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
   border-radius: 24px;
-  padding: 48px 40px;
+  padding: 24px 24px;
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 24px 80px rgba(26,24,64,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
   min-height: 360px;
@@ -241,7 +241,7 @@ nav.scrolled {
 
 /* Liquid logo canvas */
 .liquid-logo-wrap {
-  position: relative; width: 100%; max-width: 520px;
+  position: relative; width: 100%;
   margin: 0 auto;
 }
 #liquid-logo-canvas {
