@@ -45,7 +45,7 @@ export default function Footer() {
           <h4>Contact</h4>
           <a href={PHONE_TEL}>{PHONE}</a>
           <WaButton>WhatsApp</WaButton>
-          <a href={EMAIL_MAILTO}>{EMAIL}</a>
+          <a href={EMAIL_MAILTO}>Email Us</a>
           <a href="#cta">Request a Quote</a>
           <br />
           <a href="#cities" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.72rem', letterSpacing: '0.08em' }}>
