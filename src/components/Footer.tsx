@@ -1,4 +1,4 @@
-import { LOGO, PHONE, PHONE_TEL } from '../constants';
+import { LOGO, PHONE, PHONE_TEL, EMAIL, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
 
 export default function Footer() {
@@ -45,7 +45,7 @@ export default function Footer() {
           <h4>Contact</h4>
           <a href={PHONE_TEL}>{PHONE}</a>
           <WaButton>WhatsApp</WaButton>
-          <a href="mailto:info@levatedenterprises.com">Email Us</a>
+          <a href={EMAIL_MAILTO}>{EMAIL}</a>
           <a href="#cta">Request a Quote</a>
           <br />
           <a href="#cities" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.72rem', letterSpacing: '0.08em' }}>
