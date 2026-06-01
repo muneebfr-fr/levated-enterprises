@@ -28,7 +28,6 @@ img { display: block; max-width: 100%; }
   --font-display:  'Montserrat', sans-serif;
   --font-body:     'Inter', sans-serif;
   --font-mono:     'JetBrains Mono', monospace;
-  --font-urdu:     'Noto Nastaliq Urdu', serif;
 }
 
 body {
@@ -225,13 +224,6 @@ nav.scrolled {
 .hero-h1 .word span { display: inline-block; transform: translateY(110%); opacity: 0; }
 .hero-h1 .cycle-word { overflow: visible; vertical-align: middle; }
 .hero-h1 .accent { color: var(--orange); }
-
-.hero-urdu {
-  font-family: var(--font-urdu); font-size: 1.1rem;
-  color: var(--text-muted); direction: rtl; text-align: right;
-  margin-bottom: 20px;
-  opacity: 0; animation: fadeUp 0.6s ease 0.8s forwards;
-}
 
 .hero-sub {
   font-size: 1rem; line-height: 1.85; color: var(--text-body);

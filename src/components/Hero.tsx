@@ -47,9 +47,7 @@ export default function Hero() {
           <span className="word"><span>Supplier</span></span>
         </h1>
 
-        <div className="hero-urdu">آپ کا قابلِ اعتماد سپلائی پارٹنر</div>
-
-        <p className="hero-sub">
+<p className="hero-sub">
           Your single source for bulk industrial supplies, IT hardware, and facility maintenance. We simplify your procurement so you can focus on growth, whether you are based in Karachi or operating nationwide in Pakistan.
         </p>
 
