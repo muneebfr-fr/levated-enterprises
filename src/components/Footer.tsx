@@ -46,7 +46,7 @@ export default function Footer() {
           <a href={PHONE_TEL}>{PHONE}</a>
           <WaButton>WhatsApp</WaButton>
           <a href={EMAIL_MAILTO}>Email Us</a>
-          <a href="#cta">Request a Quote</a>
+          <a href={EMAIL_MAILTO}>Email for a Quote</a>
           <br />
           <a href="#cities" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.72rem', letterSpacing: '0.08em' }}>
             Karachi · Lahore · Islamabad<br />Faisalabad · Rawalpindi + More

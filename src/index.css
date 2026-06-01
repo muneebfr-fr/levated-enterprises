@@ -151,6 +151,21 @@ nav.scrolled {
 .nav-links a:hover { color: var(--purple); }
 .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
+.nav-ctas { display: flex; align-items: center; gap: 8px; }
+
+.nav-email {
+  display: flex; align-items: center; gap: 7px;
+  background: white; color: var(--purple);
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+  padding: 9px 16px; border-radius: 999px;
+  border: 1.5px solid var(--border-strong); cursor: pointer;
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.nav-email:hover { transform: translateY(-1px); border-color: var(--purple); box-shadow: var(--shadow-sm); }
+
+@media (max-width: 768px) { .nav-ctas .nav-email { display: none; } }
+
 .nav-wa {
   display: flex; align-items: center; gap: 7px;
   background: #25D366; color: white;
@@ -689,6 +704,14 @@ section { padding: 88px 6%; }
 .why-cta-wa svg { width: 24px; height: 24px; color: white; flex-shrink: 0; }
 .why-cta-wa-text span { display: block; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
 .why-cta-wa-text strong { color: white; font-size: 0.92rem; }
+.why-cta-email {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.07); border-radius: 999px; padding: 16px 24px;
+  text-decoration: none; border: 1.5px solid rgba(255,255,255,0.18); cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+.why-cta-email:hover { transform: translateY(-2px); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+.why-cta-email svg { color: rgba(255,255,255,0.85); flex-shrink: 0; }
 @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
 
 /* ── ROUTE ─────────────────────────────────────── */
