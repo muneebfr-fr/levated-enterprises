@@ -8,8 +8,8 @@ export const PHONE_TEL = "tel:+923333122898";
 
 const BASE = "https://wa.me/923333122898?text=";
 export const WA_CHIPS = [
-  { label: 'Industrial Supplies', icon: '🏭', href: BASE + encodeURIComponent("Hi, I'm looking for industrial and MRO supplies. Can you help?") },
-  { label: 'IT Hardware',         icon: '💻', href: BASE + encodeURIComponent("Hi, I'm looking for IT hardware and networking equipment. Can you help?") },
-  { label: 'Office Stationery',   icon: '📦', href: BASE + encodeURIComponent("Hi, I'm looking for office stationery and supplies. Can you help?") },
-  { label: 'Other Enquiry',       icon: '💬', href: BASE + encodeURIComponent("Hi, I'd like to make a general procurement enquiry.") },
+  { label: 'Product Availability', icon: '🏭', href: BASE + encodeURIComponent("Hi, I'd like to check if you can source a specific product. Can you help?") },
+  { label: 'Delivery Coverage',    icon: '🚚', href: BASE + encodeURIComponent("Hi, I'd like to know if you deliver to my location in Pakistan.") },
+  { label: 'Bulk Order Info',      icon: '📦', href: BASE + encodeURIComponent("Hi, I have a bulk order requirement and want to know how the process works.") },
+  { label: 'General Enquiry',      icon: '💬', href: BASE + encodeURIComponent("Hi, I have a general question about Levated Enterprises.") },
 ];

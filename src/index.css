@@ -520,7 +520,7 @@ section { padding: 88px 6%; }
   text-transform: uppercase; color: var(--orange-dark);
   background: var(--orange-light); border-radius: 4px; padding: 4px 8px;
 }
-.service-card.featured { grid-column: span 2; grid-row: span 2; background: var(--purple); border-color: var(--purple); display: flex; flex-direction: column; }
+.service-card.featured { background: var(--purple); border-color: var(--purple); }
 .service-card.featured h3 { color: white; }
 .service-card.featured p { color: rgba(255,255,255,0.72); }
 .service-card.featured .service-icon { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }

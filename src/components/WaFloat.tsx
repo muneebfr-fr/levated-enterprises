@@ -45,7 +45,7 @@ export default function WaFloat() {
             </div>
             <div className="wa-widget-body">
               <div className="wa-widget-bubble">
-                👋 Hi! What are you looking for?
+                👋 Hi! Ask us anything on WhatsApp — product availability, delivery coverage, or general info. We'll follow up with a formal quote by email.
               </div>
               <div className="wa-chips">
                 {WA_CHIPS.map((chip) => (

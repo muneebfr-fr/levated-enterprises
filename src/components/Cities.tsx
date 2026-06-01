@@ -21,11 +21,11 @@ const MAP_CITIES = [
 
 /** Sidebar city list */
 const PANEL_CITIES = [
-  { name: 'Karachi',    tag: 'HQ · Main Hub', hq: true  },
-  { name: 'Lahore',     tag: 'Industrial'                },
-  { name: 'Islamabad',  tag: 'Corporate'                 },
-  { name: 'Faisalabad', tag: 'Textile Hub'               },
-  { name: 'Rawalpindi', tag: 'Commercial'                },
+  { name: 'Karachi',    tag: 'HQ · Office & Dispatch', hq: true  },
+  { name: 'Lahore',     tag: 'Delivery'                           },
+  { name: 'Islamabad',  tag: 'Delivery'                           },
+  { name: 'Faisalabad', tag: 'Delivery'                           },
+  { name: 'Rawalpindi', tag: 'Delivery'                           },
 ];
 
 export default function Cities() {
@@ -68,7 +68,7 @@ export default function Cities() {
             </h2>
           </motion.div>
           <motion.div className="cities-sub-right reveal reveal-delay-1" ref={r1} style={{ y: headerRY }}>
-            <p>From Karachi port to Lahore's industrial zones, from Islamabad's corporate offices to Faisalabad's textile mills. Levated Enterprises delivers bulk orders to every major business hub in Pakistan.</p>
+            <p>Our office and dispatch hub is based in Karachi. The cities shown on this map are our delivery destinations — we ship bulk orders to every major business hub across Pakistan, from Lahore's industrial zones to Islamabad's corporate offices and Faisalabad's textile mills.</p>
           </motion.div>
         </div>
 
@@ -164,7 +164,7 @@ export default function Cities() {
         </div>
 
         <motion.div className="nationwide-bar reveal" style={{ y: barY }}>
-          <p>Don't see your city? <strong>No problem.</strong> We deliver to any location across Pakistan. Just WhatsApp us your requirements and delivery address.</p>
+          <p>Don't see your city? <strong>No problem.</strong> We deliver anywhere in Pakistan. WhatsApp us your delivery location and requirements to get started.</p>
           <WaButton className="nationwide-badge">
             <MapPin size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} />
             Enquire for Your City
