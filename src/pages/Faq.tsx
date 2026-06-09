@@ -125,8 +125,8 @@ export default function Faq() {
     });
     return () => {
       setPageMeta({
-        title: 'B2B Industrial Supplies & Procurement | Levated Enterprises',
-        description: 'Karachi-based B2B supplier of industrial MRO, PPE, IT hardware, office supplies, security systems and structured cabling. NTN registered. Delivering across Pakistan.',
+        title: 'General & Industrial Equipment Supplier | Levated Enterprises',
+        description: "Pakistan's trusted general and industrial equipment supplier. MRO, PPE, IT hardware, office supplies, security systems and structured cabling. NTN registered. Based in Karachi, delivering nationwide.",
         canonical: 'https://www.levatedenterprises.com.pk/',
       });
     };
