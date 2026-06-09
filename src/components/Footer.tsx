@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { LOGO, PHONE, PHONE_TEL, EMAIL, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
 
@@ -39,6 +40,7 @@ export default function Footer() {
           <a href="#why">Why Levated</a>
           <a href="#route">Our Process</a>
           <a href="#cities">Coverage</a>
+          <Link to="/faq">FAQ</Link>
         </div>
 
         <div className="footer-col">

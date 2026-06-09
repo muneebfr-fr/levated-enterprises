@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { LOGO, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const onHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -11,17 +14,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const href = (hash: string) => onHome ? hash : `/${hash}`;
+
   return (
     <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
-      <a href="#home" className="nav-logo">
+      <a href={onHome ? '#home' : '/'} className="nav-logo">
         <img src={LOGO} alt="Levated Enterprises" />
       </a>
       <div className="nav-links">
-        <a href="#mission">About</a>
-        <a href="#services">Services</a>
-        <a href="#cities">Coverage</a>
-        <a href="#why">Why Us</a>
-        <a href="#route">Process</a>
+        <a href={href('#mission')}>About</a>
+        <a href={href('#services')}>Services</a>
+        <a href={href('#cities')}>Coverage</a>
+        <a href={href('#why')}>Why Us</a>
+        <a href={href('#route')}>Process</a>
+        <Link to="/faq" className={location.pathname === '/faq' ? 'nav-active' : ''}>FAQ</Link>
       </div>
       <div className="nav-ctas">
         <WaButton className="nav-wa">
