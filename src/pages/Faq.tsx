@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import WaFloat from '../components/WaFloat';
 import WaButton from '../components/WaButton';
 import { EMAIL_MAILTO, LOGO } from '../constants';
+import { setPageMeta } from '../utils/setPageMeta';
 
 const CATEGORIES = [
   {
@@ -117,7 +118,18 @@ function AccordionItem({ q, a, index }: { q: string; a: string; index: number })
 export default function Faq() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'FAQ | Levated Enterprises';
+    setPageMeta({
+      title: 'Industrial Supplies FAQ | Levated Enterprises Pakistan',
+      description: 'Answers to common questions about Levated Enterprises — delivery coverage, how to get a quote, NTN registration, PPE, instrumentation, IT infrastructure, and GST compliance.',
+      canonical: 'https://www.levatedenterprises.com.pk/faq',
+    });
+    return () => {
+      setPageMeta({
+        title: 'B2B Industrial Supplies & Procurement | Levated Enterprises',
+        description: 'Karachi-based B2B supplier of industrial MRO, PPE, IT hardware, office supplies, security systems and structured cabling. NTN registered. Delivering across Pakistan.',
+        canonical: 'https://www.levatedenterprises.com.pk/',
+      });
+    };
   }, []);
 
   return (
