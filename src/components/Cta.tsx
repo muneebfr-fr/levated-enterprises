@@ -1,6 +1,7 @@
 import { useReveal } from '../hooks/useReveal';
 import { LOGO, PHONE, PHONE_TEL, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
+import SocialLinks from './SocialLinks';
 
 export default function Cta() {
   const r0 = useReveal();
@@ -34,6 +35,10 @@ export default function Cta() {
         <a href={PHONE_TEL} className="cta-phone">
           or call us · <span>{PHONE}</span>
         </a>
+        <div className="cta-social">
+          <span className="cta-social-label">Follow us</span>
+          <SocialLinks className="cta-social-icons" />
+        </div>
       </div>
     </section>
   );

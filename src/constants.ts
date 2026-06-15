@@ -5,8 +5,10 @@ export const WA_BASE  = "https://wa.me/923333122898";
 export const LOGO       = "/logo.png";
 export const PHONE      = "+92 333 3122898";
 export const PHONE_TEL  = "tel:+923333122898";
-export const EMAIL      = "info@levatedenterprises.com.pk";
+export const EMAIL        = "info@levatedenterprises.com.pk";
 export const EMAIL_MAILTO = "mailto:info@levatedenterprises.com.pk";
+export const INSTAGRAM    = "https://www.instagram.com/levatedenterprises/";
+export const FACEBOOK     = "https://www.facebook.com/people/Levated-Enterprises/100091763172395/";
 
 const BASE = "https://wa.me/923333122898?text=";
 export const WA_CHIPS = [

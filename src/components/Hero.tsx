@@ -3,6 +3,7 @@ import AnimatedTextCycle from './AnimatedTextCycle';
 import LiquidLogo from './LiquidLogo';
 import BorderBeam from './ui/BorderBeam';
 import WaButton from './WaButton';
+import SocialLinks from './SocialLinks';
 import { EMAIL_MAILTO } from '../constants';
 
 const CYCLE_WORDS = ['Reliable', 'Verified', 'Trusted', 'Nationwide'];
@@ -72,6 +73,7 @@ export default function Hero() {
           <div className="trust-badge"><span className="trust-badge-dot" /> NTN Registered</div>
           <div className="trust-badge"><span className="trust-badge-dot" /> STRN Verified</div>
           <div className="trust-badge"><span className="trust-badge-dot" /> GST Compliant</div>
+          <SocialLinks className="hero-social" />
         </div>
       </div>
 

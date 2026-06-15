@@ -1049,6 +1049,69 @@ footer {
 .nav-active { color: var(--orange) !important; }
 .nav-active::after { transform: scaleX(1) !important; transform-origin: left !important; }
 
+/* ── SOCIAL LINKS ──────────────────────────────── */
+.social-links { display: flex; align-items: center; gap: 8px; }
+
+.social-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  transition: transform 0.2s, color 0.2s, background 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+.social-icon:hover { transform: translateY(-2px); border-color: transparent; color: white; }
+.social-icon.instagram:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.social-icon.facebook:hover  { background: #1877F2; border-color: #1877F2; }
+
+/* Labeled chips (footer brand column) */
+.social-links-labeled { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-family: var(--font-display); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.2s, color 0.2s, background 0.2s, border-color 0.2s;
+}
+.social-chip span { color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.social-chip:hover { transform: translateY(-2px); color: white; border-color: transparent; }
+.social-chip:hover span { color: white; }
+.social-chip.instagram:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.social-chip.facebook:hover  { background: #1877F2; }
+
+/* Footer brand social row */
+.footer-social { margin-top: 20px; }
+
+/* CTA social row */
+.cta-social {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cta-social-label {
+  font-family: var(--font-display); font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.cta-social-icons .social-icon {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* Hero social (sits alongside trust badges) */
+.hero-social { margin-left: 4px; }
+.hero-social .social-icon {
+  border-color: var(--border); color: var(--text-muted);
+  background: white;
+}
+.hero-social .social-icon:hover { color: white; border-color: transparent; }
+
+/* Footer bottom social */
+.footer-bottom .social-links .social-icon { width: 30px; height: 30px; }
+
 /* ── 404 PAGE ──────────────────────────────────── */
 .notfound {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;

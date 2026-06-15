@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LOGO, PHONE, PHONE_TEL, EMAIL, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
+import SocialLinks from './SocialLinks';
 
 export default function Footer() {
   return (
@@ -22,6 +23,7 @@ export default function Footer() {
             <span className="c-badge"><span className="c-badge-dot" /> STRN Verified</span>
             <span className="c-badge"><span className="c-badge-dot" /> GST Compliant</span>
           </div>
+          <SocialLinks variant="with-label" className="footer-social" />
         </div>
 
         <div className="footer-col">
@@ -58,6 +60,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>© 2026 <span className="org">Levated Enterprises</span>. All rights reserved. Karachi, Pakistan.</p>
+        <SocialLinks />
       </div>
     </footer>
   );
