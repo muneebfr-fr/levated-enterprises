@@ -1,5 +1,7 @@
 import { Factory, Monitor, Printer, FileText, Zap, Sparkles } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
+import CircuitMesh from './ui/CircuitMesh';
+import { CIRCUIT_PATTERNS } from './ui/circuitPatterns';
 
 const SERVICES = [
   {
@@ -64,6 +66,11 @@ export default function Services() {
               <h3>{s.title}</h3>
               <p>{s.desc}</p>
               <span className="service-tag">{s.tag}</span>
+              <CircuitMesh
+                {...CIRCUIT_PATTERNS[s.featured ? 3 : i % 3]}
+                inverted={s.featured}
+                pulse={s.featured}
+              />
             </div>
           ))}
         </div>

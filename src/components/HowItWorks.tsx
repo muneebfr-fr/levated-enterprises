@@ -72,6 +72,13 @@ export default function HowItWorks() {
             />
           </svg>
 
+          {/* Circuit nodes — pulsing links between stages, plus a dot tracing the flow of an order */}
+          <div className="route-connector-nodes" aria-hidden="true">
+            <span className="route-node" />
+            <span className="route-node" />
+            <span className="route-node-travel" />
+          </div>
+
           {STEPS.map((step, i) => (
             <motion.div
               key={step.title}

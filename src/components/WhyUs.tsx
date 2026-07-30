@@ -2,6 +2,8 @@ import { Timer, ClipboardList, Package, Receipt } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import { LOGO, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
+import CircuitMesh from './ui/CircuitMesh';
+import { CIRCUIT_PATTERNS } from './ui/circuitPatterns';
 
 const CARDS = [
   { Icon: Timer,         title: 'Reliability',       desc: 'We guarantee fulfillment on time and to your exact specifications, minimizing your operational risk across every order we handle in Pakistan.' },
@@ -34,6 +36,11 @@ export default function WhyUs() {
                   <h4>{card.title}</h4>
                   <p>{card.desc}</p>
                 </div>
+                <CircuitMesh
+                  {...CIRCUIT_PATTERNS[[2, 1, 0, 2][i]]}
+                  inverted
+                  pulse={i === 0}
+                />
               </div>
             ))}
           </div>
