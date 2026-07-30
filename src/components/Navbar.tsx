@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import { LOGO, EMAIL_MAILTO } from '../constants';
+import { LOGO_NAV, EMAIL_MAILTO } from '../constants';
 import WaButton from './WaButton';
 import MobileNav from './MobileNav';
 
@@ -26,7 +26,7 @@ export default function Navbar() {
     <>
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
         <a href={onHome ? '#home' : '/'} className="nav-logo">
-          <img src={LOGO} alt="Levated Enterprises" />
+          <img src={LOGO_NAV} alt="Levated Enterprises" />
         </a>
 
         {/* Desktop links */}
