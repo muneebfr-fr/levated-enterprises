@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import LiquidLogo from './LiquidLogo';
+import { LOGO } from '../constants';
 
 // Unsplash photo ids, served from their CDN at the size we need
 const img = (id: string, w: number) =>
@@ -41,6 +42,11 @@ export default function ProductSlideshow() {
   const [hidden, setHidden] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; t: number; axis: 'x' | 'y' | null; id: number } | null>(null);
+
+  // The liquid logo does a heavy one-off setup (shape solve + WebGL). It is the last
+  // slide, so only build it once the show gets close, keeping page load light on phones.
+  const [logoReady, setLogoReady] = useState(false);
+  useEffect(() => { if (index >= N - 3) setLogoReady(true); }, [index]);
 
   const current = SLIDES[index];
   const duration = current.kind === 'logo' ? LOGO_MS : PHOTO_MS;
@@ -144,7 +150,7 @@ export default function ProductSlideshow() {
             ) : (
               <>
                 <div className="slide-logo-inner">
-                  <LiquidLogo />
+                  {logoReady ? <LiquidLogo /> : <img className="slide-logo-static" src={LOGO} alt="" />}
                 </div>
                 <div className="slide-caption">
                   <span className="slide-eyebrow">Levated Enterprises</span>

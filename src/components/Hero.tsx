@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import QuoteButton from './QuoteButton';
 import AnimatedTextCycle from './AnimatedTextCycle';
 import ProductSlideshow from './ProductSlideshow';
@@ -7,6 +7,8 @@ import WaButton from './WaButton';
 import SocialLinks from './SocialLinks';
 
 const CYCLE_WORDS = ['Reliable', 'Verified', 'Trusted', 'Nationwide'];
+const STAMPS = ['NTN Registered', 'STRN Verified', 'GST Compliant'];
+const STAMP_TILT = [-4, 3, -2];
 
 export default function Hero() {
   const wordsRef = useRef<NodeListOf<Element> | null>(null);
@@ -70,9 +72,16 @@ export default function Hero() {
         </div>
 
         <div className="hero-trust">
-          <div className="trust-badge"><span className="trust-badge-dot" /> NTN Registered</div>
-          <div className="trust-badge"><span className="trust-badge-dot" /> STRN Verified</div>
-          <div className="trust-badge"><span className="trust-badge-dot" /> GST Compliant</div>
+          {STAMPS.map((label, i) => (
+            <div className="stamp" key={label} style={{ '--i': i, '--rot': `${STAMP_TILT[i]}deg` } as CSSProperties}>
+              <span className="stamp-ink">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {label}
+              </span>
+            </div>
+          ))}
           <SocialLinks className="hero-social" />
         </div>
       </div>
