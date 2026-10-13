@@ -146,13 +146,35 @@ function parseLogo(src: string): Promise<ImageData> {
 
       function step(done: number) {
         if (done >= TOTAL) {
-          let mx = 0;
-          for (let i = 0; i < u.length; i++) if (u[i] > mx) mx = u[i];
+          // Normalise each connected shape against its own peak. A single global
+          // max let the thick wordmark swamp the thin "ENTERPRISES" lettering and
+          // circuit traces, which then fell below the shader's edge cutoff.
+          const label = new Int32Array(cw * ch).fill(-1);
+          const peaks: number[] = [];
+          const stack: number[] = [];
+          for (let start = 0; start < cs.length; start++) {
+            if (!cs[start] || label[start] !== -1) continue;
+            const id = peaks.length;
+            let peak = 0;
+            label[start] = id; stack.push(start);
+            while (stack.length) {
+              const idx = stack.pop()!;
+              if (u[idx] > peak) peak = u[idx];
+              const x = idx % cw, y = (idx - x) / cw;
+              for (let ny = y - 1; ny <= y + 1; ny++) for (let nx = x - 1; nx <= x + 1; nx++) {
+                if (nx < 0 || nx >= cw || ny < 0 || ny >= ch) continue;
+                const n = ny * cw + nx;
+                if (cs[n] && label[n] === -1) { label[n] = id; stack.push(n); }
+              }
+            }
+            peaks.push(peak);
+          }
           const out = new Uint8ClampedArray(cw * ch * 4);
           for (let y = 0; y < ch; y++) for (let x = 0; x < cw; x++) {
             const idx = y * cw + x, p = idx * 4;
             if (!cs[idx]) { out[p] = out[p + 1] = out[p + 2] = out[p + 3] = 255; }
             else {
+              const mx = peaks[label[idx]];
               const g = Math.round(255 * (1 - Math.pow(mx > 0 ? u[idx] / mx : 0, 2)));
               out[p] = out[p + 1] = out[p + 2] = g; out[p + 3] = 255;
             }
