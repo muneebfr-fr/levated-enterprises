@@ -1,6 +1,7 @@
 import { Timer, ClipboardList, Package, Receipt } from 'lucide-react';
+import QuoteButton from './QuoteButton';
 import { useReveal } from '../hooks/useReveal';
-import { LOGO, EMAIL_MAILTO } from '../constants';
+import { LOGO } from '../constants';
 import WaButton from './WaButton';
 import CircuitMesh from './ui/CircuitMesh';
 import { CIRCUIT_PATTERNS } from './ui/circuitPatterns';
@@ -61,7 +62,7 @@ export default function WhyUs() {
                 <strong>WhatsApp Enquiry</strong>
               </div>
             </WaButton>
-            <a href={EMAIL_MAILTO} className="why-cta-email">
+            <QuoteButton className="why-cta-email">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -70,7 +71,7 @@ export default function WhyUs() {
                 <span>Ready to proceed?</span>
                 <strong>Email for a Quote</strong>
               </div>
-            </a>
+            </QuoteButton>
           </div>
         </div>
       </div>

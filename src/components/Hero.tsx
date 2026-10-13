@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
+import QuoteButton from './QuoteButton';
 import AnimatedTextCycle from './AnimatedTextCycle';
 import ProductSlideshow from './ProductSlideshow';
 import BorderBeam from './ui/BorderBeam';
 import WaButton from './WaButton';
 import SocialLinks from './SocialLinks';
-import { EMAIL_MAILTO } from '../constants';
 
 const CYCLE_WORDS = ['Reliable', 'Verified', 'Trusted', 'Nationwide'];
 
@@ -60,13 +60,13 @@ export default function Hero() {
             </svg>
             Enquire on WhatsApp
           </WaButton>
-          <a href={EMAIL_MAILTO} className="btn-wa-hero">
+          <QuoteButton className="btn-wa-hero">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
             Email for a Quote
-          </a>
+          </QuoteButton>
         </div>
 
         <div className="hero-trust">

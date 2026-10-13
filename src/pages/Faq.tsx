@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import QuoteButton from '../components/QuoteButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WaFloat from '../components/WaFloat';
 import WaButton from '../components/WaButton';
-import { EMAIL_MAILTO, LOGO } from '../constants';
+import { LOGO } from '../constants';
 import { setPageMeta } from '../utils/setPageMeta';
 
 const CATEGORIES = [
@@ -152,13 +153,13 @@ export default function Faq() {
               <WaButton className="btn-orange">
                 WhatsApp for Info
               </WaButton>
-              <a href={EMAIL_MAILTO} className="btn-wa-hero">
+              <QuoteButton className="btn-wa-hero">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
                 Email for a Quote
-              </a>
+              </QuoteButton>
             </div>
           </motion.div>
         </div>
@@ -201,13 +202,13 @@ export default function Faq() {
               </svg>
               WhatsApp for Info
             </WaButton>
-            <a href={EMAIL_MAILTO} className="nav-email">
+            <QuoteButton className="nav-email">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
               Email for a Quote
-            </a>
+            </QuoteButton>
           </div>
           <Link to="/" className="faq-back">Back to main site</Link>
         </motion.div>
