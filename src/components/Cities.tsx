@@ -5,19 +5,25 @@ import { useReveal } from '../hooks/useReveal';
 import WaButton from './WaButton';
 
 /**
- * City positions derived from real lat/lon projected onto pk.svg coordinate space.
- * SVG path extents (traced): x 45.5-954.5, y 43.6-915.7
- * Geographic bounds: lon 60.87-77.83 E, lat 23.69-37.10 N
- * x = 45.5 + (lon - 60.87) / 16.96 * 909
- * y = 43.6 + (37.10 - lat) / 13.41 * 872.1
+ * pk.svg (Simplemaps) is a Mercator projection. Its three georeferenced
+ * points (the #points group in the file) fit these constants to within 0.03px:
+ *   (24.3625 N, 61.6546 E) -> (90.9, 874.7)
+ *   (29.7065 N, 69.7569 E) -> (545.5, 537.9)
+ *   (36.3865 N, 76.2387 E) -> (909.1, 90.4)
  */
+const project = (lat: number, lon: number) => {
+  const merc = Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+  return { x: -3368.05 + 56.1023 * lon, y: 2284.57 - 3214.29 * merc };
+};
+
+// Label offsets are relative to each dot; Rawalpindi has no label (it sits on Islamabad)
 const MAP_CITIES = [
-  { name: 'Karachi',    x: 375, y: 840, hq: true,  delay: 0.0, lx: 385,  ly: 832,  anchor: 'start' as const },
-  { name: 'Lahore',     x: 768, y: 405, hq: false, delay: 0.4, lx: 758,  ly: 397,  anchor: 'end'   as const },
-  { name: 'Islamabad',  x: 701, y: 263, hq: false, delay: 0.8, lx: 691,  ly: 255,  anchor: 'end'   as const },
-  { name: 'Faisalabad', x: 700, y: 413, hq: false, delay: 1.2, lx: 690,  ly: 427,  anchor: 'end'   as const },
-  { name: 'Rawalpindi', x: 697, y: 273, hq: false, delay: 1.6, lx: null, ly: null, anchor: 'end'   as const },
-];
+  { name: 'Karachi',    lat: 24.8607, lon: 67.0011, hq: true,  delay: 0.0, label: { dx: 12,  dy: -8, anchor: 'start' as const } },
+  { name: 'Lahore',     lat: 31.5204, lon: 74.3587, hq: false, delay: 0.4, label: { dx: 12,  dy: 7,  anchor: 'start' as const } },
+  { name: 'Islamabad',  lat: 33.6844, lon: 73.0479, hq: false, delay: 0.8, label: { dx: -12, dy: -8, anchor: 'end'   as const } },
+  { name: 'Faisalabad', lat: 31.4504, lon: 73.1350, hq: false, delay: 1.2, label: { dx: -12, dy: 14, anchor: 'end'   as const } },
+  { name: 'Rawalpindi', lat: 33.5651, lon: 73.0169, hq: false, delay: 1.6, label: null },
+].map(c => ({ ...c, ...project(c.lat, c.lon) }));
 
 /** Sidebar city list */
 const PANEL_CITIES = [
@@ -107,14 +113,14 @@ export default function Cities() {
                     stroke="white" strokeWidth="2"
                   />
                   {/* Label (skip Rawalpindi — too close to Islamabad) */}
-                  {city.lx !== null && (
+                  {city.label && (
                     <text
-                      x={city.lx} y={city.ly!}
+                      x={city.x + city.label.dx} y={city.y + city.label.dy}
                       fontSize={city.hq ? 26 : 22}
                       fontFamily="var(--font-display)"
                       fontWeight="700"
                       fill={city.hq ? 'var(--orange-dark)' : 'var(--purple-dark)'}
-                      textAnchor={city.anchor}
+                      textAnchor={city.label.anchor}
                     >
                       {city.name}
                     </text>
