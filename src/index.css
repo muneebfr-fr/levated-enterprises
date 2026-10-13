@@ -383,10 +383,115 @@ nav.scrolled {
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
   border-radius: 24px;
-  padding: 24px 24px;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 24px 80px rgba(26,24,64,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
-  min-height: 360px;
+}
+
+/* ── PRODUCT SLIDESHOW ─────────────────────────── */
+.slideshow {
+  position: absolute; inset: 0;
+  border-radius: inherit; overflow: hidden;
+  user-select: none; -webkit-user-select: none;
+}
+.slide {
+  position: absolute; inset: 0;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+}
+.slide.is-active {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.9s ease, visibility 0s;
+  z-index: 1;
+}
+.slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transform: scale(1.12);
+  transition: transform 7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.slide.is-active img { transform: scale(1.0); }
+.slide-shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(26,24,64,0.92) 0%, rgba(26,24,64,0.55) 32%, rgba(26,24,64,0) 62%),
+    linear-gradient(to bottom, rgba(26,24,64,0.45) 0%, rgba(26,24,64,0) 22%);
+}
+.slide-caption {
+  position: absolute; left: 28px; right: 28px; bottom: 26px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  color: #fff;
+}
+.slide-caption > * {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.slide.is-active .slide-caption > * { opacity: 1; transform: none; }
+.slide.is-active .slide-caption > :nth-child(1) { transition-delay: 0.25s; }
+.slide.is-active .slide-caption > :nth-child(2) { transition-delay: 0.35s; }
+.slide.is-active .slide-caption > :nth-child(3) { transition-delay: 0.45s; }
+.slide-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 0.66rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: #FFB48C;
+}
+.slide-count {
+  color: rgba(255,255,255,0.6); font-weight: 600;
+  padding-right: 10px; border-right: 1px solid rgba(255,255,255,0.25);
+}
+.slide-title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(1.3rem, 2.1vw, 1.85rem); line-height: 1.15;
+  letter-spacing: -0.01em; color: #fff;
+}
+.slide-tag {
+  font-size: 0.8rem; color: rgba(255,255,255,0.75);
+  padding: 5px 12px; border-radius: 999px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+
+/* Closing slide: the liquid logo on the card's own lavender glass */
+.slide-logo-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 32px 90px;
+}
+.slide-logo .slide-caption { align-items: center; text-align: center; }
+.slide-logo .slide-eyebrow { color: var(--orange); }
+.slide-logo .slide-title { color: var(--purple-dark); font-size: clamp(1.1rem, 1.7vw, 1.45rem); }
+
+/* Story-style progress segments */
+.slide-progress {
+  position: absolute; top: 18px; left: 22px; right: 22px; z-index: 4;
+  display: flex; gap: 6px;
+}
+.slide-seg {
+  flex: 1; height: 14px; padding: 5px 0; border: 0; background: none; cursor: pointer;
+  display: block;
+}
+.slide-seg::before {
+  content: ''; display: block; height: 3px; border-radius: 3px;
+  background: rgba(255,255,255,0.3);
+  transition: background 0.4s ease;
+}
+.slide-seg { position: relative; }
+.slide-seg-fill {
+  position: absolute; left: 0; top: 5px; height: 3px; width: 0; border-radius: 3px;
+  background: #fff;
+}
+.slide-seg.done .slide-seg-fill { width: 100%; }
+.slide-seg.active .slide-seg-fill { animation: seg-fill var(--seg-ms, 4s) linear forwards; }
+.slideshow.is-paused .slide-seg-fill { animation-play-state: paused; }
+.slide-seg:hover::before { background: rgba(255,255,255,0.55); }
+.slideshow.on-logo .slide-seg::before { background: rgba(45,42,110,0.18); }
+.slideshow.on-logo .slide-seg-fill { background: var(--orange); }
+@keyframes seg-fill { from { width: 0; } to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  /* the bar is the slide timer, so it keeps its real duration */
+  .slide-seg.active .slide-seg-fill { animation-duration: var(--seg-ms, 4s) !important; }
+  .slide img, .slide.is-active img { transform: none; }
 }
 
 /* Liquid logo canvas */
@@ -459,16 +564,18 @@ nav.scrolled {
   #home { grid-template-columns: 1fr; padding: 110px 5% 60px; gap: 40px; }
   .hero-right {
     display: flex;
-    min-height: unset;
-    padding: 32px 24px;
+    aspect-ratio: 4 / 3.4;
     border-radius: 18px;
   }
   .liquid-logo-wrap { max-width: 380px; }
   .hero-h1 { font-size: clamp(2rem, 7vw, 3rem); }
 }
 @media (max-width: 480px) {
-  .hero-right { padding: 24px 16px; border-radius: 14px; }
+  .hero-right { border-radius: 14px; aspect-ratio: 4 / 4.2; }
   .liquid-logo-wrap { max-width: 100%; }
+  .slide-caption { left: 18px; right: 18px; bottom: 18px; }
+  .slide-progress { top: 14px; left: 16px; right: 16px; gap: 4px; }
+  .slide-logo-inner { padding: 24px 20px 84px; }
 }
 
 /* ── MARQUEE ───────────────────────────────────── */

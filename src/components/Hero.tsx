@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import AnimatedTextCycle from './AnimatedTextCycle';
-import LiquidLogo from './LiquidLogo';
+import ProductSlideshow from './ProductSlideshow';
 import BorderBeam from './ui/BorderBeam';
 import WaButton from './WaButton';
 import SocialLinks from './SocialLinks';
@@ -77,10 +77,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* BorderBeam sweeps around the liquid logo card */}
+      {/* Product line slideshow, closing on the liquid logo */}
       <div className="hero-right">
+        <ProductSlideshow />
         <BorderBeam duration={5} />
-        <LiquidLogo />
       </div>
     </section>
   );
