@@ -395,16 +395,39 @@ nav.scrolled {
   position: absolute; inset: 0;
   border-radius: inherit; overflow: hidden;
   user-select: none; -webkit-user-select: none;
+  touch-action: pan-y; cursor: grab; outline: none;
 }
+.slideshow.is-dragging { cursor: grabbing; }
+.slideshow:focus-visible { box-shadow: inset 0 0 0 2px var(--orange); }
 .slide {
   position: absolute; inset: 0;
-  opacity: 0; visibility: hidden;
-  transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+  overflow: hidden; /* keep the Ken Burns overscale inside each slide */
+  visibility: hidden;
+  will-change: transform;
 }
-.slide.is-active {
-  opacity: 1; visibility: visible;
-  transition: opacity 0.9s ease, visibility 0s;
-  z-index: 1;
+.slide.is-near { visibility: visible; }
+.slide.is-moving { transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+.slide.is-active { z-index: 1; }
+
+/* Prev / next arrows */
+.slide-arrow {
+  position: absolute; top: 50%; z-index: 4;
+  width: 40px; height: 40px; margin-top: -20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 999px; cursor: pointer;
+  color: #fff; background: rgba(26,24,64,0.35);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity 0.25s ease, background 0.2s ease, transform 0.2s ease;
+}
+.slide-arrow-prev { left: 14px; }
+.slide-arrow-next { right: 14px; }
+.slideshow:hover .slide-arrow, .slide-arrow:focus-visible { opacity: 1; }
+.slide-arrow:hover { background: var(--orange); border-color: var(--orange); transform: scale(1.06); }
+.slideshow.on-logo .slide-arrow { color: var(--purple-dark); background: rgba(255,255,255,0.55); border-color: rgba(45,42,110,0.15); }
+.slideshow.on-logo .slide-arrow:hover { color: #fff; background: var(--orange); }
+@media (hover: none) {
+  .slide-arrow { opacity: 1; width: 34px; height: 34px; margin-top: -17px; }
 }
 .slide img {
   width: 100%; height: 100%; object-fit: cover; display: block;
