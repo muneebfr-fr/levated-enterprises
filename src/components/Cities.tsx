@@ -1,37 +1,17 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Globe, MapPin } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal';
 import WaButton from './WaButton';
+import PakistanMap3D, { type MapCity } from './PakistanMap3D';
 
-/**
- * pk.svg (Simplemaps) is a Mercator projection. Its three georeferenced
- * points (the #points group in the file) fit these constants to within 0.03px:
- *   (24.3625 N, 61.6546 E) -> (90.9, 874.7)
- *   (29.7065 N, 69.7569 E) -> (545.5, 537.9)
- *   (36.3865 N, 76.2387 E) -> (909.1, 90.4)
- */
-const project = (lat: number, lon: number) => {
-  const merc = Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
-  return { x: -3368.05 + 56.1023 * lon, y: 2284.57 - 3214.29 * merc };
-};
-
-// Label offsets are relative to each dot; Rawalpindi has no label (it sits on Islamabad)
-const MAP_CITIES = [
-  { name: 'Karachi',    lat: 24.8607, lon: 67.0011, hq: true,  delay: 0.0, label: { dx: 12,  dy: -8, anchor: 'start' as const } },
-  { name: 'Lahore',     lat: 31.5204, lon: 74.3587, hq: false, delay: 0.4, label: { dx: 12,  dy: 7,  anchor: 'start' as const } },
-  { name: 'Islamabad',  lat: 33.6844, lon: 73.0479, hq: false, delay: 0.8, label: { dx: -12, dy: -8, anchor: 'end'   as const } },
-  { name: 'Faisalabad', lat: 31.4504, lon: 73.1350, hq: false, delay: 1.2, label: { dx: -12, dy: 14, anchor: 'end'   as const } },
-  { name: 'Rawalpindi', lat: 33.5651, lon: 73.0169, hq: false, delay: 1.6, label: null },
-].map(c => ({ ...c, ...project(c.lat, c.lon) }));
-
-/** Sidebar city list */
-const PANEL_CITIES = [
-  { name: 'Karachi',    tag: 'HQ · Office & Dispatch', hq: true  },
-  { name: 'Lahore',     tag: 'Delivery'                           },
-  { name: 'Islamabad',  tag: 'Delivery'                           },
-  { name: 'Faisalabad', tag: 'Delivery'                           },
-  { name: 'Rawalpindi', tag: 'Delivery'                           },
+// One list drives both the 3D map and the side panel. Positions are real coordinates.
+const CITIES: MapCity[] = [
+  { name: 'Karachi',    lat: 24.8607, lon: 67.0011, hq: true, tag: 'HQ · Office & Dispatch' },
+  { name: 'Lahore',     lat: 31.5204, lon: 74.3587, tag: 'Delivery', side: 'right', height: 58 },
+  { name: 'Islamabad',  lat: 33.6844, lon: 73.0479, tag: 'Delivery', height: 70 },
+  { name: 'Faisalabad', lat: 31.4504, lon: 73.1350, tag: 'Delivery', side: 'left', height: 46 },
+  { name: 'Rawalpindi', lat: 33.5651, lon: 73.0169, tag: 'Delivery', side: 'right', height: 40, quiet: true },
 ];
 
 export default function Cities() {
@@ -40,6 +20,7 @@ export default function Cities() {
   const r2 = useReveal();
 
   const sectionRef = useRef<HTMLElement>(null);
+  const [active, setActive] = useState<string | null>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -81,73 +62,18 @@ export default function Cities() {
         {/* Pakistan map + city panel */}
         <div className="cities-map-layout reveal" ref={r2}>
           <motion.div className="pak-map-wrap" style={{ y: mapY }}>
-            {/* Real Simplemaps SVG — hue-shifted to purple palette */}
-            <img
-              src="/pk.svg"
-              alt="Pakistan map"
-              className="pak-map-img"
-            />
-
-            {/* City dot overlay — same viewBox as pk.svg */}
-            <svg
-              viewBox="0 0 1000 959"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="pak-map-overlay"
-              aria-hidden="true"
-            >
-              {MAP_CITIES.map((city) => (
-                <g key={city.name}>
-                  {/* Pulse ring */}
-                  <motion.circle
-                    cx={city.x} cy={city.y} r={8}
-                    fill={city.hq ? 'rgba(240,120,64,0.3)' : 'rgba(45,42,110,0.25)'}
-                    animate={{ r: [8, 22, 8], opacity: [0.8, 0, 0.8] }}
-                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut', delay: city.delay }}
-                  />
-                  {/* Core dot */}
-                  <circle
-                    cx={city.x} cy={city.y}
-                    r={city.hq ? 7 : 5}
-                    fill={city.hq ? 'var(--orange)' : 'var(--purple)'}
-                    stroke="white" strokeWidth="2"
-                  />
-                  {/* Label (skip Rawalpindi — too close to Islamabad) */}
-                  {city.label && (
-                    <text
-                      x={city.x + city.label.dx} y={city.y + city.label.dy}
-                      fontSize={city.hq ? 26 : 22}
-                      fontFamily="var(--font-display)"
-                      fontWeight="700"
-                      fill={city.hq ? 'var(--orange-dark)' : 'var(--purple-dark)'}
-                      textAnchor={city.label.anchor}
-                    >
-                      {city.name}
-                    </text>
-                  )}
-                </g>
-              ))}
-
-              {/* Subtle watermark */}
-              <text
-                x="130" y="600" fontSize="11"
-                fontFamily="var(--font-display)"
-                fill="rgba(45,42,110,0.18)"
-                letterSpacing="8"
-                transform="rotate(-72,130,600)"
-              >
-                NATIONWIDE
-              </text>
-            </svg>
+            <PakistanMap3D cities={CITIES} active={active} onActive={setActive} />
           </motion.div>
 
           {/* City sidebar */}
           <motion.div className="cities-panel" style={{ y: panelY }}>
-            {PANEL_CITIES.map((city, i) => (
+            {CITIES.map((city, i) => (
               <motion.div
                 key={city.name}
-                className={`city-row${city.hq ? ' hq' : ''}`}
+                className={`city-row${city.hq ? ' hq' : ''}${active === city.name ? ' is-active' : ''}`}
                 style={{ y: rowYValues[i] }}
+                onMouseEnter={() => setActive(city.name)}
+                onMouseLeave={() => setActive(null)}
               >
                 <div className={`city-row-dot${city.hq ? ' hq-dot' : ''}`} />
                 <div>

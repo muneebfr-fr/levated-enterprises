@@ -827,16 +827,147 @@ section { padding: 88px 6%; }
   margin: 40px 0;
 }
 .pak-map-wrap { width: 100%; position: relative; }
-.pak-map-img {
-  width: 100%; height: auto; display: block;
-  /* Convert #6f9c76 green → site purple palette */
-  filter: hue-rotate(115deg) saturate(0.55) brightness(0.82);
+
+/* ── 3D MAP ─────────────────────────────────────── */
+/* Registered so the tilt itself animates and pins counter-rotate in lockstep */
+@property --ax { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+@property --az { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+
+.map3d {
+  position: relative; width: 100%;
+  aspect-ratio: 800 / 600;
+  perspective: 1700px; perspective-origin: 50% 35%;
 }
-.pak-map-overlay {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
+.map3d-stage {
+  position: absolute; left: 0; top: 50%; width: 100%;
+  aspect-ratio: 800 / 740;
+  margin-top: -46.25%; /* half the stage height, as a share of width */
+  transform-style: preserve-3d;
+  transform: rotateX(var(--ax)) rotateZ(var(--az));
+  transition: --ax 1.4s cubic-bezier(0.22, 1, 0.36, 1), --az 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.map3d.is-settled .map3d-stage { transition-duration: 0.8s; }
+.map3d-layer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  overflow: visible; pointer-events: none;
+}
+
+.map3d-shadow { transform: translateZ(-48px); filter: blur(18px); opacity: 0; transition: opacity 1.2s ease 0.4s; }
+.map3d.is-in .map3d-shadow { opacity: 0.3; }
+.map3d-shadow path { fill: var(--purple-dark); }
+
+.map3d-slab path { fill: color-mix(in srgb, #5F5BB4 calc(var(--k) * 100%), var(--purple-dark)); }
+
+.map3d-prov { transform: translateZ(0); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.map3d-prov path {
+  fill: #EEEDFC; stroke: #fff; stroke-width: 1.5; stroke-linejoin: round;
+  pointer-events: visiblePainted; transition: fill 0.25s ease;
+}
+.map3d-prov.is-home path { fill: #FDEDE4; }
+.map3d-prov.is-hover { transform: translateZ(8px); }
+.map3d-prov.is-hover path { fill: #DEDBF7; }
+.map3d-prov.is-home.is-hover path { fill: #FBDCCB; }
+.map3d-prov-label {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: 0.2em;
+  fill: rgba(45,42,110,0.3); text-anchor: middle; pointer-events: none;
+}
+.map3d-prov.is-hover .map3d-prov-label { fill: rgba(45,42,110,0.6); }
+
+.map3d-routes { transform: translateZ(10px); }
+.map3d-route {
+  fill: none; stroke: var(--orange); stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 1 9; opacity: 0;
+  transition: opacity 0.6s ease 1.6s, stroke-width 0.2s;
+}
+.map3d.is-in .map3d-route { opacity: 0.7; }
+.map3d.is-playing .map3d-route { animation: map3d-route-flow 1s linear infinite; }
+.map3d-route.is-active { stroke-width: 3.4; }
+.map3d.is-in .map3d-route.is-active { opacity: 1; }
+@keyframes map3d-route-flow { to { stroke-dashoffset: -10; } }
+
+/* Pins: placed on the surface, then turned upright to face the viewer */
+.map3d-pin {
+  position: absolute; width: 0; height: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+.map3d-pin.is-lifted { transform: translateZ(8px); }
+.map3d.has-active .map3d-pin:not(.is-active) { opacity: 0.45; }
+.map3d-pin-foot {
+  position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--purple); box-shadow: 0 0 0 3px rgba(255,255,255,0.95);
+}
+.map3d-pin.is-hq .map3d-pin-foot { left: -7px; top: -7px; width: 14px; height: 14px; background: var(--orange); }
+.map3d-pin-ring {
+  position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--purple); opacity: 0;
+}
+.map3d-pin.is-hq .map3d-pin-ring { border-color: var(--orange); }
+.map3d.is-playing.is-settled .map3d-pin-ring { animation: map3d-ring 2.6s ease-out infinite; animation-delay: calc(var(--i) * 0.45s); }
+@keyframes map3d-ring { 0% { transform: scale(0.35); opacity: 0.9; } 100% { transform: scale(2.4); opacity: 0; } }
+
+.map3d-pin-stand {
+  position: absolute; left: 0; bottom: 0; width: 0; height: var(--h);
+  transform-origin: 0 100%;
+  transform: rotateZ(calc(var(--az) * -1)) rotateX(calc(var(--ax) * -1));
+}
+.map3d-pin-rise {
+  position: absolute; left: 0; bottom: 0; width: 0; height: 100%;
+  transform-origin: 0 100%; transform: scaleY(0); opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+.map3d.is-in .map3d-pin-rise {
+  transform: scaleY(1); opacity: 1;
+  transition-delay: calc(1.1s + var(--i) * 0.14s);
+}
+.map3d-pin-beam {
+  position: absolute; left: -1px; bottom: 0; width: 2px; height: 100%; border-radius: 2px;
+  background: linear-gradient(to top, rgba(45,42,110,0.1), var(--purple));
+}
+.map3d-pin.is-hq .map3d-pin-beam { left: -1.5px; width: 3px; background: linear-gradient(to top, rgba(240,120,64,0.15), var(--orange)); }
+.map3d-pin-head {
+  position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--purple); border: 2px solid #fff; box-shadow: 0 2px 8px rgba(26,24,64,0.3);
+  pointer-events: auto; transition: transform 0.2s ease;
+}
+.map3d-pin.is-hq .map3d-pin-head { left: -8px; top: -8px; width: 16px; height: 16px; background: var(--orange); }
+.map3d-pin.is-active .map3d-pin-head { transform: scale(1.35); }
+
+.map3d-pin-label {
+  position: absolute; display: flex; flex-direction: column; gap: 1px;
+  white-space: nowrap; pointer-events: auto; cursor: default;
+  padding: 6px 11px; border-radius: 10px;
+  background: #fff; border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(26,24,64,0.14);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.map3d-pin-label strong { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; color: var(--purple-dark); line-height: 1.2; }
+.map3d-pin-label em { font-style: normal; font-family: var(--font-display); font-size: 0.5rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.map3d-pin.is-hq .map3d-pin-label { background: var(--orange); border-color: var(--orange); }
+.map3d-pin.is-hq .map3d-pin-label strong { color: #fff; font-size: 0.86rem; }
+.map3d-pin.is-hq .map3d-pin-label em { color: rgba(255,255,255,0.85); }
+.map3d-pin.is-active .map3d-pin-label { border-color: var(--purple); box-shadow: 0 8px 24px rgba(26,24,64,0.22); }
+.map3d-pin.side-top .map3d-pin-label { left: 0; bottom: calc(100% + 12px); transform: translateX(-50%); }
+.map3d-pin.side-top.is-active .map3d-pin-label { transform: translateX(-50%) scale(1.06); }
+.map3d-pin.side-right .map3d-pin-label { left: 12px; top: -16px; }
+.map3d-pin.side-left .map3d-pin-label { right: 12px; top: -16px; }
+.map3d-pin.side-right.is-active .map3d-pin-label,
+.map3d-pin.side-left.is-active .map3d-pin-label { transform: scale(1.06); }
+
+.map3d-pin.is-quiet .map3d-pin-label { opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.map3d-pin.is-quiet.is-active .map3d-pin-label { opacity: 1; }
+@media (max-width: 600px) {
+  .map3d-pin-label { padding: 4px 8px; border-radius: 8px; }
+  .map3d-pin-label strong { font-size: 0.66rem; }
+  .map3d-pin.is-hq .map3d-pin-label strong { font-size: 0.72rem; }
+  .map3d-pin-label em { font-size: 0.44rem; }
+  .map3d-pin-stand { height: calc(var(--h) * 0.72); }
+}
+
+.city-row.is-active { background: var(--purple); border-color: var(--purple); transform: translateX(4px); }
+.city-row.is-active .city-row-name { color: white; }
+.city-row.is-active .city-row-tag { color: rgba(255,255,255,0.6); }
+.city-row.is-active .city-row-dot { background: rgba(255,255,255,0.9); }
+.city-row.hq.is-active { background: var(--orange); border-color: var(--orange); }
 .cities-panel { display: flex; flex-direction: column; gap: 10px; }
 .city-row {
   display: flex; align-items: center; gap: 14px;
@@ -865,7 +996,7 @@ section { padding: 88px 6%; }
 .city-row-tag { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
 @media (max-width: 900px) {
   .cities-map-layout { grid-template-columns: 1fr; }
-  .pak-map-wrap { max-width: 400px; margin: 0 auto; }
+  .pak-map-wrap { max-width: 560px; margin: 0 auto; }
 }
 
 /* ── WHY LEVATED ───────────────────────────────── */
